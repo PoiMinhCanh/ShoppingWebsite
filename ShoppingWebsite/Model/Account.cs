@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShoppingWebsite.Model.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,11 +12,6 @@ namespace ShoppingWebsite.Model;
 [Index(nameof(UserName), IsUnique = true, Name = "Ix_Account_UserName")]
 public class Account
 {
-    public enum AccountType
-    {
-        Member, Staff
-    }
-
     [Key]
     public int AccountID { get; set; }
 

@@ -1,20 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ShoppingWebsite.Data;
+using ShoppingWebsite.Services.ManageState;
+using System.Diagnostics;
 
-namespace ShoppingWebsite.Pages
+namespace ShoppingWebsite.Pages;
+
+public class IndexModel : StateModel
 {
-    public class IndexModel : PageModel
+    private readonly ILogger<IndexModel> _logger;
+
+    public IndexModel(ApplicationDbContext db, ILogger<IndexModel> logger) : base(db)
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-
-        }
+        _logger = logger;
     }
+
+    public void OnGet()
+    {
+    }
+
 }

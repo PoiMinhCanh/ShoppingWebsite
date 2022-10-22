@@ -1,0 +1,64 @@
+﻿@page
+@model ShoppingWebsite.Pages.Register.IndexModel
+@{
+	ViewData["Title"] = "Register";
+}
+
+<h2>Đăng kí thông tin</h2>
+<hr />
+
+@{
+	foreach(string message in Model.SuccessMessages)
+	{
+		<div class="alert alert-success mb-2">
+			<strong>@message</strong>
+		</div>
+	}
+	foreach (string message in Model.ErrorMessages)
+	{
+		<div class="alert alert-danger mb-2">
+			<strong>@message</strong>
+		</div>
+	}
+}
+
+<form method="post" class="d-flex">
+	<div class="card" style="min-width: 400px">
+		<div class="card-body">
+			<p>
+				<label asp-for="CreateAccountDTO.UserName"></label>
+				<input class="form-control" asp-for="CreateAccountDTO.UserName" />
+				<span class="text-danger" asp-validation-for="CreateAccountDTO.UserName"></span>
+			</p>
+			<p>
+				<label asp-for="CreateAccountDTO.Password"></label>
+				<input type="password" class="form-control" asp-for="CreateAccountDTO.Password"/>
+				<span class="text-danger" asp-validation-for="CreateAccountDTO.Password"></span>
+			</p>
+			<p>
+				<label asp-for="CreateAccountDTO.ConfirmPassword"></label>
+				<input type="password" class="form-control" asp-for="CreateAccountDTO.ConfirmPassword" />
+				<span class="text-danger" asp-validation-for="CreateAccountDTO.ConfirmPassword"></span>
+			</p>
+			<p>
+				<label asp-for="CreateAccountDTO.FullName"></label>
+				<input class="form-control" asp-for="CreateAccountDTO.FullName" />
+				<span class="text-danger" asp-validation-for="CreateAccountDTO.FullName"></span>
+			</p>
+			<p>
+				<label asp-for="CreateAccountDTO.SecretKey"></label>
+				<input class="form-control" asp-for="CreateAccountDTO.SecretKey" />
+				<span class="text-danger" asp-validation-for="CreateAccountDTO.SecretKey"></span>
+			</p>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-primary">Register</button>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
