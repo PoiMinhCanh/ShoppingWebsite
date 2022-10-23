@@ -1,0 +1,30 @@
+﻿@page
+@model ShoppingWebsite.Pages.Categories.DetailModel
+
+@{
+    ViewData["Title"] = "Detail Category";
+}
+
+<h2>Detail Category Information</h2>
+<hr />
+
+<a class="btn btn-success btn-sm mb-2" asp-page="Index">Back to List</a>
+
+<div class="d-flex">
+    <div class="card" style="min-width: 400px">
+        <div class="card-body">
+            <dl>
+                <dt>@Html.DisplayNameFor(model => model.Category.CategoryId):</dt>
+                <dd>@Model.Category.CategoryId</dd>
+                <dt>@Html.DisplayNameFor(model => model.Category.CategoryName):</dt>
+                <dd>@Model.Category.CategoryName</dd>
+                <dt>@Html.DisplayNameFor(model => model.Category.Description):</dt>
+                <dd>@Model.Category.Description</dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-danger" asp-page="Delete" asp-route-id="@Model.Category.CategoryId">Delete</a>
+            <a class="btn btn-success" asp-page="Update" asp-route-id="@Model.Category.CategoryId">Update</a>
+        </div>
+    </div>
+</div>

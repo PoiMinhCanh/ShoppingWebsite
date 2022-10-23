@@ -4,22 +4,23 @@ using ShoppingWebsite.Model;
 using ShoppingWebsite.Services.AuthorizeFilter;
 using ShoppingWebsite.Services.ManageState;
 
-namespace ShoppingWebsite.Pages.Admin.Suppliers;
+namespace ShoppingWebsite.Pages.Categories;
 
 [AuthorizeFilter("Admin")]
 public class IndexModel : StateModel
 {
+
     public IndexModel(ApplicationDbContext db) : base(db)
     {
     }
 
-    public IList<Supplier> Suppliers { get;set; }
+    public IList<Category> Categories { get;set; } = default!;
 
     public async Task OnGetAsync()
     {
-        if (_db.Suppliers != null)
+        if (_db.Categories != null)
         {
-            Suppliers = await _db.Suppliers.ToListAsync();
+            Categories = await _db.Categories.ToListAsync();
         }
     }
 }

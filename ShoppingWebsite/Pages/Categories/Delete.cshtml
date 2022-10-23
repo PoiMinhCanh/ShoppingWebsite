@@ -1,0 +1,32 @@
+﻿@page
+@model ShoppingWebsite.Pages.Categories.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<h2>Delete Category</h2>
+<hr />
+
+<a class="btn btn-success btn-sm mb-2" asp-page="Index">Back to List</a>
+
+<h6>Are you sure want to delete?</h6>
+
+<form method="post" class="d-flex">
+	<input type="hidden" asp-for="Category.CategoryId" />
+	<div class="card" style="min-width: 400px">
+		<div class="card-body">
+			<dl>
+				<dt>@Html.DisplayNameFor(model => model.Category.CategoryId):</dt>
+				<dd>@Model.Category.CategoryId</dd>
+				<dt>@Html.DisplayNameFor(model => model.Category.CategoryName):</dt>
+				<dd>@Model.Category.CategoryName</dd>
+                <dt>@Html.DisplayNameFor(model => model.Category.Description):</dt>
+				<dd>@Model.Category.Description</dd>
+			</dl>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-danger" type="submit">Delete</button>
+		</div>
+	</div>
+</form>

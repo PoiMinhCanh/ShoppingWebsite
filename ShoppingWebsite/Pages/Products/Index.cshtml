@@ -1,0 +1,60 @@
+﻿@page
+@model ShoppingWebsite.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "List Product";
+}
+
+<h2>List Product</h2>
+<hr />
+
+<a class="btn btn-success btn-sm my-2" asp-page="Create">Create New Product</a>
+
+@if(Model.Products != null && Model.Products.Count > 0)
+{
+	<div class="card">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].ProductId)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].ProductImageURL)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].Quantity)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].Price)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].ProductDescription)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].Category)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products[0].Supplier)</th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model.Products)
+                    {
+                        <tr>
+                            <td>@item.ProductId</td>
+                            <td>
+                                <img src="/@item.ProductImageURL" style="width: 50px; height: 50px;" class="rounded"/>
+                            </td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price</td>
+                            <td>@item.ProductDescription</td>
+                            <td>@item.Category.CategoryName</td>
+                            <td>@item.Supplier.CompanyName</td>
+                            <td>
+                                <a class="btn btn-success btn-sm" asp-page="Update" asp-route-id="@item.ProductId">Update</a>
+                                <a class="btn btn-danger btn-sm" asp-page="Index" asp-page-handler="Delete" asp-route-id="@item.ProductId" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else 
+{
+    <p class="text-danger text-center font-weight-bold">No have any data.</p>
+}
+
+

@@ -1,0 +1,42 @@
+﻿@page
+@model ShoppingWebsite.Pages.Categories.UpdateModel
+
+@{
+    ViewData["Title"] = "Update Category";
+}
+
+<h2>Update Category Information</h2>
+<hr />
+
+<a class="btn btn-success btn-sm mb-2" asp-page="./Index">Back to Index</a>
+
+<form method="post" class="d-flex">
+	<div class="card" style="min-width: 400px">
+		<div class="card-body">
+			<input type="hidden" asp-for="Category.CategoryId" />
+			<p>
+				<label>@Html.DisplayNameFor(model => model.Category.CategoryId)</label>
+				<input class="form-control" value="@Model.Category.CategoryId" disabled />
+			</p>
+			<p>
+				<label asp-for="Category.CategoryName"></label>
+				<input class="form-control" asp-for="Category.CategoryName" />
+				<span class="text-danger" asp-validation-for="Category.CategoryName"></span>
+			</p>
+			<p>
+				<label asp-for="Category.Description"></label>
+				<input class="form-control" asp-for="Category.Description" />
+				<span class="text-danger" asp-validation-for="Category.Description"></span>
+			</p>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-primary">Update</button>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

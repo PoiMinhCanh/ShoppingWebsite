@@ -5,50 +5,51 @@ using ShoppingWebsite.Model;
 using ShoppingWebsite.Services.AuthorizeFilter;
 using ShoppingWebsite.Services.ManageState;
 
-namespace ShoppingWebsite.Pages.Admin.Suppliers;
+namespace ShoppingWebsite.Pages.Categories;
 
 [AuthorizeFilter("Admin")]
 public class DeleteModel : StateModel
 {
+
     public DeleteModel(ApplicationDbContext db) : base(db)
     {
     }
 
     [BindProperty]
-    public Supplier Supplier { get; set; }
+    public Category Category { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
-        if (id == null || _db.Suppliers == null)
+        if (id == null || _db.Categories == null)
         {
             return NotFound();
         }
 
-        var supplier = await _db.Suppliers.FirstOrDefaultAsync(m => m.SupplierId == id);
+        var category = await _db.Categories.FirstOrDefaultAsync(m => m.CategoryId == id);
 
-        if (supplier == null)
+        if (category == null)
         {
             return NotFound();
         }
         else 
         {
-            Supplier = supplier;
+            Category = category;
         }
         return Page();
     }
 
     public async Task<IActionResult> OnPostAsync(int? id)
     {
-        if (id == null || _db.Suppliers == null)
+        if (id == null || _db.Categories == null)
         {
             return NotFound();
         }
-        var supplier = await _db.Suppliers.FindAsync(id);
+        var category = await _db.Categories.FindAsync(id);
 
-        if (supplier != null)
+        if (category != null)
         {
-            Supplier = supplier;
-            _db.Suppliers.Remove(Supplier);
+            Category = category;
+            _db.Categories.Remove(Category);
             await _db.SaveChangesAsync();
         }
 

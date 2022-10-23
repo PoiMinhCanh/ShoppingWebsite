@@ -5,7 +5,7 @@ using ShoppingWebsite.Model;
 using ShoppingWebsite.Services.AuthorizeFilter;
 using ShoppingWebsite.Services.ManageState;
 
-namespace ShoppingWebsite.Pages.Admin.Suppliers;
+namespace ShoppingWebsite.Pages.Suppliers;
 
 [AuthorizeFilter("Admin")]
 public class DetailModel : StateModel
