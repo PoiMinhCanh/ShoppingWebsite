@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<h2>Trang chủ</h2>
+<h2>Home Page</h2>
 <hr />
 
 <div class="d-flex justify-content-between mb-4">
@@ -12,16 +12,14 @@
 		@if(Model.IsAuthenticated)
 		{
 			<a class="btn btn-info text-white" asp-page="/Orders/History" asp-route-accountId="Account.AccountID">Order History</a>
-		}
-		@*@if(Model.cart != null)
-		{
-			<a class="btn d-flex justify-content-center align-items-center text-white"
-			style="gap: 15px; background: #dde127"
-			asp-page="/Carts/Cart">
+			<a 
+				class="btn d-flex justify-content-center align-items-center text-white"
+			    style="gap: 15px; background: #dde127"
+				asp-page="/Carts/Index">
 				<ion-icon name="cart-outline"></ion-icon>
-				<span style="width: 16px">@Model.cart.GetSize()</span>
+				<span style="width: 16px">@Model.cartSize</span>
 			</a>
-		}*@
+		}
 	</div>
 	<form class="form-check form-inline" method="get">
 		<label class="mx-2" for="q">Query: </label>

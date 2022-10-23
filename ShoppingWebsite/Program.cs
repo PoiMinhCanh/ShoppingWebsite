@@ -11,6 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 // Add auto mapper services
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// Add session
+builder.Services.AddSession();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +32,8 @@ app.UseRouting();
 app.UseStatusCodePagesWithRedirects("/ErrorPage?statusCode={0}");
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 
