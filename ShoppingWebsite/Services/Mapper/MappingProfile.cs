@@ -15,6 +15,14 @@ public class MappingProfile : Profile
         // Mapping (Account, ProfileDTO)
         CreateMap<Account, ProfileDTO>()
             .ReverseMap();
+
+        // Mapping (ProfileDTO, Customer)
+        CreateMap<ProfileDTO, Customer>()
+            .ForMember(
+                    des => des.CustomerID,
+                    opt => opt.MapFrom(src => src.AccountID)
+                )
+            .ReverseMap();
     }
 
 }

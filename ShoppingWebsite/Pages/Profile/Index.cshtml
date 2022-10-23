@@ -1,0 +1,70 @@
+﻿@page
+@model ShoppingWebsite.Pages.Profile.IndexModel
+@{
+	ViewData["Title"] = "Profile";
+}
+
+<h2>Profile information</h2>
+<hr />
+
+<form class="d-flex" style="gap: 5px" method="post">
+
+	<input type="hidden" asp-for="ProfileDTO.AccountID" />
+	<input type="hidden" asp-for="ProfileDTO.UserName" />
+	<input type="hidden" asp-for="ProfileDTO.Type" />
+
+	<div class="card" style="min-width: 450px">
+		<div class="card-header">
+			<b>Account</b>
+		</div>
+		<div class="card-body">
+			<p>
+				<b>ID: </b>@Model.ProfileDTO.AccountID
+			</p>
+			<p>
+				<b>Username: </b>@Model.ProfileDTO.UserName
+			</p>
+			<p>
+				<label asp-for="ProfileDTO.FullName"></label>
+				<input class="form-control" asp-for="ProfileDTO.FullName"/>
+				<span class="text-danger" asp-validation-for="ProfileDTO.FullName"></span>
+			</p>
+			<p>
+				<b>Type: </b>@(Model.ProfileDTO.Type.Equals(AccountType.Staff) ? "Staff" : "Customer")
+			</p>
+		</div>
+	</div>
+
+	<div class="card" style="min-width: 450px">
+		<div class="card-header">
+			<b>Profile Information</b>
+		</div>
+		<div class="card-body">
+			<p>
+				<label asp-for="ProfileDTO.ContactName"></label>
+				<input class="form-control" asp-for="ProfileDTO.ContactName"/>
+				<span class="text-danger" asp-validation-for="ProfileDTO.ContactName"></span>
+			</p>
+			<p>
+				<label asp-for="ProfileDTO.Address"></label>
+				<input class="form-control" asp-for="ProfileDTO.Address"/>
+				<span class="text-danger" asp-validation-for="ProfileDTO.Address"></span>
+			</p>
+			<p>
+				<label asp-for="ProfileDTO.Phone"></label>
+				<input class="form-control" asp-for="ProfileDTO.Phone"/>
+				<span class="text-danger" asp-validation-for="ProfileDTO.Phone"></span>
+			</p>
+		</div>
+	</div>
+
+	<div class="align-self-end">
+		<button class="btn btn-success">Update</button>
+	</div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

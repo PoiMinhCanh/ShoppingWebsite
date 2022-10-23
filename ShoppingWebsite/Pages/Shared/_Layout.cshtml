@@ -34,11 +34,10 @@
                                     </li>
                                 }
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-secondary text-white mx-2" asp-page="/Profiles/Detail" asp-route-accountId="@Model.Account.AccountID">
-                                        @Model.Account.UserName
+                                    <a class="nav-link btn btn-secondary text-white mx-2" asp-page="/Profile/Index" asp-route-id="@Model.Account.AccountID">
+                                        @Model.Account.FullName
                                     </a>
                                 </li>
-                                
                                 <li class="nav-item">
                                     <a class="nav-link btn btn-danger text-white" asp-area="" asp-page="/Logout/Index">Logout</a>
                                 </li>

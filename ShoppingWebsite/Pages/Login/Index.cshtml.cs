@@ -53,6 +53,21 @@ public class IndexModel : StateModel
 
             HttpContext.Response.Cookies.Append("id", account.AccountID.ToString(), cookieOptions);
 
+            // check if already create profile or not
+            Customer profile = _db.Customers.SingleOrDefault(profile => profile.CustomerID.Equals(account.AccountID));
+            if (profile == null)
+            {
+                profile = new Customer 
+                            { CustomerID = account.AccountID, 
+                              ContactName = "Poi Minh Canh", 
+                              Address = "Bac Lieu",
+                              Phone = "0857817812"};
+                _db.Add(profile);
+                _db.SaveChanges();
+
+                return Redirect($"Profile/Index?id={account.AccountID}");
+            }
+
             return Redirect("Index");
 
         }

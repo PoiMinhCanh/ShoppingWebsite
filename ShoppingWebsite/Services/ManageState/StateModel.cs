@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShoppingWebsite.Data;
 using ShoppingWebsite.Model;
 using ShoppingWebsite.Model.Enum;
+using System.Security.Principal;
 
 namespace ShoppingWebsite.Services.ManageState;
 
@@ -25,6 +27,21 @@ public class StateModel : PageModel
     public override void OnPageHandlerSelected(PageHandlerSelectedContext context)
     {
         getAccount();
+        getMessages();
+    }
+
+    private void getMessages()
+    {
+        if (TempData["success"] != null)
+        {
+            SuccessMessages.Add(TempData["success"].ToString());
+        }
+
+        if (TempData["error"] != null)
+        {
+            SuccessMessages.Add(TempData["error"].ToString());
+        }
+
     }
 
     private void getAccount()

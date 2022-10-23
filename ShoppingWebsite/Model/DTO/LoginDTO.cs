@@ -13,6 +13,7 @@ public class LoginDTO
     [StringLength(25, MinimumLength = 6)]
     public string Password { get; set; }
 
+    [Display(Name = "Remember Me")]
     public bool RememberMe { get; set; }
 
 }

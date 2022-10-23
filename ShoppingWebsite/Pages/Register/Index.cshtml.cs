@@ -57,8 +57,9 @@ public class IndexModel : StateModel
             _db.Accounts.Add(account);
             _db.SaveChanges();
 
+            TempData["success"] = $"You have successfully registered an account with username={account.UserName}";
+
             return Redirect("/Login");
-            // CHUA CO CHECK TRUNG USERNAME TRONG DATABASE
         }
         return Page();
     }
