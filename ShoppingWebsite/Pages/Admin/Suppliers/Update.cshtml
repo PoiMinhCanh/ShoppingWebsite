@@ -1,0 +1,47 @@
+﻿@page
+@model ShoppingWebsite.Pages.Admin.Suppliers.UpdateModel
+
+@{
+	ViewData["Title"] = "Update Supplier";
+}
+
+<h2>Update Supplier Information</h2>
+<hr />
+
+<a class="btn btn-success btn-sm mb-2" asp-page="./Index">Back to Index</a>
+
+<form method="post" class="d-flex">
+	<div class="card" style="min-width: 400px">
+		<div class="card-body">
+			<input type="hidden" asp-for="Supplier.SupplierId" />
+			<p>
+				<label>@Html.DisplayNameFor(model => model.Supplier.SupplierId)</label>
+				<input class="form-control" value="@Model.Supplier.SupplierId" disabled />
+			</p>
+			<p>
+				<label asp-for="Supplier.CompanyName"></label>
+				<input class="form-control" asp-for="Supplier.CompanyName"/>
+				<span class="text-danger" asp-validation-for="Supplier.CompanyName"></span>
+			</p>
+			<p>
+				<label asp-for="Supplier.Address"></label>
+				<input class="form-control" asp-for="Supplier.Address"/>
+				<span class="text-danger" asp-validation-for="Supplier.Address"></span>
+			</p>
+			<p>
+				<label asp-for="Supplier.Phone"></label>
+				<input class="form-control" asp-for="Supplier.Phone"/>
+				<span class="text-danger" asp-validation-for="Supplier.Phone"></span>
+			</p>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-primary">Update</button>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

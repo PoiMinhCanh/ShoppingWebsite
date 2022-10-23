@@ -52,6 +52,7 @@ public class IndexModel : StateModel
             };
 
             HttpContext.Response.Cookies.Append("id", account.AccountID.ToString(), cookieOptions);
+            HttpContext.Response.Cookies.Append("role", account.Type == AccountType.Staff ? "Admin" : "Member", cookieOptions);
 
             // check if already create profile or not
             Customer profile = _db.Customers.SingleOrDefault(profile => profile.CustomerID.Equals(account.AccountID));

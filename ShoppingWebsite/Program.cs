@@ -26,6 +26,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// for status code error
+app.UseStatusCodePagesWithRedirects("/ErrorPage?statusCode={0}");
+
 app.UseAuthorization();
 
 app.MapRazorPages();

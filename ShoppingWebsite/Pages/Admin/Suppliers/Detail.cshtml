@@ -1,0 +1,32 @@
+﻿@page
+@model ShoppingWebsite.Pages.Admin.Suppliers.DetailModel
+
+@{
+    ViewData["Title"] = "Detail Supplier";
+}
+
+<h2>Detail Supplier Information</h2>
+<hr />
+
+<a class="btn btn-success btn-sm mb-2" asp-page="Index">Back to List</a>
+
+<div class="d-flex">
+    <div class="card" style="min-width: 400px">
+        <div class="card-body">
+            <dl>
+                <dt>@Html.DisplayNameFor(model => model.Supplier.SupplierId):</dt>
+                <dd>@Model.Supplier.SupplierId</dd>
+                <dt>@Html.DisplayNameFor(model => model.Supplier.CompanyName):</dt>
+                <dd>@Model.Supplier.CompanyName</dd>
+                <dt>@Html.DisplayNameFor(model => model.Supplier.Address):</dt>
+                <dd>@Model.Supplier.Address</dd>
+                <dt>@Html.DisplayNameFor(model => model.Supplier.Phone):</dt>
+                <dd>@Model.Supplier.Phone</dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-danger" asp-page="Delete" asp-route-id="@Model.Supplier.SupplierId">Delete</a>
+            <a class="btn btn-success" asp-page="Update" asp-route-id="@Model.Supplier.SupplierId">Update</a>
+        </div>
+    </div>
+</div>

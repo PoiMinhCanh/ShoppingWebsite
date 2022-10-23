@@ -1,0 +1,41 @@
+﻿@page
+@model ShoppingWebsite.Pages.Admin.Suppliers.CreateModel
+
+@{
+    ViewData["Title"] = "Add New Supplier";
+}
+
+<h2>Add New Supplier</h2>
+<hr />
+
+<a class="btn btn-success btn-sm mb-2" asp-page="Index">Back to List</a>
+
+<form method="post" class="d-flex">
+	<div class="card" style="min-width: 400px">
+		<div class="card-body">
+			<p>
+				<label asp-for="Supplier.CompanyName"></label>
+				<input class="form-control" asp-for="Supplier.CompanyName" />
+				<span class="text-danger" asp-validation-for="Supplier.CompanyName"></span>
+			</p>
+			<p>
+				<label asp-for="Supplier.Address"></label>
+				<input class="form-control" asp-for="Supplier.Address" />
+				<span class="text-danger" asp-validation-for="Supplier.Address"></span>
+			</p>
+			<p>
+				<label asp-for="Supplier.Phone"></label>
+				<input class="form-control" asp-for="Supplier.Phone" />
+				<span class="text-danger" asp-validation-for="Supplier.Phone"></span>
+			</p>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-primary">Submit</button>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
