@@ -42,5 +42,4 @@ public class Product
 
     public Supplier Supplier { get; set; }
 
-
 }

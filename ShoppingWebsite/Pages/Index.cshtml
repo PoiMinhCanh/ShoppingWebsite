@@ -4,7 +4,95 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2>Trang chủ</h2>
+<hr />
+
+<div class="d-flex justify-content-between mb-4">
+	<div class="d-flex" style="gap: 10px">
+		@if(Model.IsAuthenticated)
+		{
+			<a class="btn btn-info text-white" asp-page="/Orders/History" asp-route-accountId="Account.AccountID">Order History</a>
+		}
+		@*@if(Model.cart != null)
+		{
+			<a class="btn d-flex justify-content-center align-items-center text-white"
+			style="gap: 15px; background: #dde127"
+			asp-page="/Carts/Cart">
+				<ion-icon name="cart-outline"></ion-icon>
+				<span style="width: 16px">@Model.cart.GetSize()</span>
+			</a>
+		}*@
+	</div>
+	<form class="form-check form-inline" method="get">
+		<label class="mx-2" for="q">Query: </label>
+		<input class="form-control mr-2" name="q" value="@Model.TextSearch" required/>
+		@if(Model.ActiveCategoryId != null)
+		{
+			<input type="hidden" name="categoryId" value="@Model.ActiveCategoryId" />
+		}
+		<input class="btn btn-primary" type="submit" value="Search"/>
+	</form>
+</div>
+
+<div class="row">
+	<div class="col-sm-3">
+		<div class="d-flex flex-column">
+			<h4>Category</h4>
+			<a 
+				class="font-weight-bold @(Model.ActiveCategoryId == null ? "bg-danger" : "bg-info") text-white text-decoration-none p-2"
+				asp-route-q="@Model.TextSearch"
+			>All</a>
+			
+			@foreach(var category in Model.Categories)
+			{
+				<a 
+					class="font-weight-bold @(Model.ActiveCategoryId == category.CategoryId ? "bg-danger" : "bg-info") text-white text-decoration-none p-2"
+					asp-route-categoryId="@category.CategoryId"
+					asp-route-q="@Model.TextSearch"
+				>@category.CategoryName</a>
+			}
+		</div>
+	</div>
+	<div class="col-sm-9">
+		<div class="d-flex">
+			<h4>List Product</h4>
+		</div>
+		@if (Model.Products != null && Model.Products.Count > 0)
+		{
+			<div class="d-flex flex-wrap justify-content-around" style="gap: 30px 10px">
+				@foreach (var item in Model.Products)
+				{
+					<div class="card" style="width: min(100%, 200px); font-size: .8rem;">
+						<img class="card-img-top" src="@item.ProductImageURL" alt="@item.ProductName" style="width: 100%; height: 150px;" />
+						<div class="card-body p-2">
+							<div class="card-title d-flex justify-content-between">
+								<div class="text-primary font-weight-bold">@item.ProductName</div>
+								<b>@item.Price$</b>
+							</div>
+							<div class="card-text">
+								<b class="d-block">Category: @item.Category.CategoryName</b>
+								<b class="d-block">Supplier: @item.Supplier.CompanyName</b>
+								<b class="d-block">Quantity: @item.Quantity</b>
+								<i>@item.ProductDescription</i>
+							</div>
+						</div>
+						<div class="card-footer">
+							@if (Model.IsAuthenticated)
+							{
+								<a style="font-size: .8rem" class="btn btn-success btn-sm mb-2 text-white"
+									asp-route-q="@Model.TextSearch"
+									asp-route-categoryId="@Model.ActiveCategoryId"
+									asp-route-addProductId="@item.ProductId"
+								>Add To Cart</a>
+							}
+						</div>
+					</div>
+				}
+			</div>
+		} else {
+			<div class="text-center">
+				<p class="text-danger">No have data.</p>
+			</div>
+		}
+	</div>
 </div>

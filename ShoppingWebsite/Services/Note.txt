@@ -1,1 +1,1 @@
-﻿
+﻿- Admin còn quản lý đơn hàng, quản lý khách hàng nữa
