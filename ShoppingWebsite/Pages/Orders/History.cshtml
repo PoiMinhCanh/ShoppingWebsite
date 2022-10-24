@@ -1,0 +1,52 @@
+﻿@page
+@model ShoppingWebsite.Pages.Orders.HistoryModel
+@{
+	ViewData["Title"] = "Order History";
+}
+
+<h2>Order History</h2>
+<hr />
+
+@if(Model.Orders != null && Model.Orders.Count > 0)
+{
+	<div class="card">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Orders[0].OrderId)</th>
+                        <th>@Html.DisplayNameFor(model => model.Orders[0].OrderDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.Orders[0].RequiredDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.Orders[0].ShippedDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.Orders[0].ShipAddress)</th>
+                        <th>@Html.DisplayNameFor(model => model.Orders[0].Freight)</th>
+                        <th>@Html.DisplayNameFor(model => model.Orders[0].TotalCost)</th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var order in Model.Orders)
+                    {
+                        <tr>
+                            <td>@order.OrderId</td>
+                            <td>@order.OrderDate</td>
+                            <td>@order.RequiredDate</td>
+                            <td>@order.ShippedDate</td>
+                            <td>@order.ShipAddress</td>
+                            <td>@order.Freight</td>
+                            <td>@order.TotalCost</td>
+                            <td>
+                                <a class="btn btn-danger btn-sm" asp-page="Detail" asp-route-id="@order.OrderId">View Detail</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+} else 
+{
+    <p class="text-danger text-center font-weight-bold">No have any data.</p>
+}
+
+

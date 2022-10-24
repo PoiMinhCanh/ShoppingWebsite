@@ -24,6 +24,7 @@ public class Order
     public double Freight { get; set; } = 25000; 
 
     public string ShipAddress { get; set; }
+    public double TotalCost { get; set; }
 
     // Relationship
     public Customer Customer { get; set; }

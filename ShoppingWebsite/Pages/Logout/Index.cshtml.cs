@@ -9,6 +9,10 @@ public class IndexModel : PageModel
     {
         HttpContext.Response.Cookies.Delete("id");
         HttpContext.Response.Cookies.Delete("role");
+        
+        // remove cart
+        HttpContext.Session.Remove("cart");
+
         return Redirect("/Index");
     }
 }

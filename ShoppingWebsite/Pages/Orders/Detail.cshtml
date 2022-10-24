@@ -1,0 +1,85 @@
+﻿@page
+@model ShoppingWebsite.Pages.Orders.DetailModel
+@{
+	ViewData["Title"] = "Order Detail";
+}
+
+<h2>Order Information</h2>
+<hr />
+
+<h3>Order Code: @Model.Order.OrderId ordered by @Model.Order.Customer.ContactName</h3>
+<hr />
+
+<div class="d-flex">
+	<div class="card" style="min-width: 400px">
+		<div class="card-body">
+			<dl>
+				<dt>@Html.DisplayNameFor(model => model.Order.OrderDate):</dt>
+				<dd>@Model.Order.OrderDate</dd>
+				<dt>@Html.DisplayNameFor(model => model.Order.RequiredDate):</dt>
+				<dd>@Model.Order.RequiredDate</dd>
+				<dt>@Html.DisplayNameFor(model => model.Order.ShippedDate):</dt>
+				<dd>@Model.Order.ShippedDate</dd>
+				<dt>@Html.DisplayNameFor(model => model.Order.ShipAddress):</dt>
+				<dd>@Model.Order.ShipAddress</dd>
+				<dt>@Html.DisplayNameFor(model => model.Order.Freight):</dt>
+				<dd>@Model.Order.Freight</dd>
+				<dt>@Html.DisplayNameFor(model => model.Order.TotalCost):</dt>
+				<dd>@Model.Order.TotalCost</dd>
+			</dl>
+		</div>
+		<div class="card-footer">
+			<a class="btn btn-success" asp-page="History" asp-route-customerId="@Model.Account.AccountID">Back to order history</a>
+		</div>
+	</div>
+</div>
+
+@if (Model.OrderDetails != null && Model.OrderDetails.Count > 0)
+{
+	<div class="card">
+		<div class="card-body">
+			<table class="table table-bordered text-center">
+				<thead>
+					<tr>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.ProductId)</th>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.ProductImageURL)</th>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.ProductName)</th>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.ProductDescription)</th>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.Category)</th>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.Supplier)</th>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.Price)</th>
+						<th>@Html.DisplayNameFor(model => model.OrderDetails[0].Product.Quantity)</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var orderDetail in Model.OrderDetails)
+					{
+						<tr>
+							<td>@orderDetail.Product.ProductId</td>
+							<td>
+								<img src="/@orderDetail.Product.ProductImageURL" style="width: 50px; height: 50px" class="rounded" />
+							</td>
+							<td>@orderDetail.Product.ProductName</td>
+							<td>@orderDetail.Product.ProductDescription</td>
+							<td>@orderDetail.Product.Category.CategoryName</td>
+							<td>@orderDetail.Product.Supplier.CompanyName</td>
+							<td>@orderDetail.Product.Price$</td>
+							<td>@orderDetail.Product.Quantity</td>
+							<td>
+								@orderDetail.Price$
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="d-flex justify-content-end p-2">
+		<b>Total: @(Model.Order.TotalCost - Model.Order.Freight)$ </b>
+	</div>
+}
+else
+{
+	<p class="text-danger text-center font-weight-bold">No have any data.</p>
+}
